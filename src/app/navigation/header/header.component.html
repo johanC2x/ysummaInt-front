@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <a routerLink="/home">YSUMA</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items" *ngIf="!loginService.estaLogeado()">
+            <li>
+                <a routerLink="/sign-in">Inicia sesión</a>
+            </li>
+            <li>
+                <a routerLink="/sign-up">Registrate</a>
+            </li>
+        </ul>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items" *ngIf="loginService.estaLogeado()">
+            <li>
+                <a routerLink="/create-app">Crear App</a>
+            </li>
+            <li>
+                <a href="javascript: void(0);" (click)="loginService.cerrarSesion()">Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+  </mat-toolbar>

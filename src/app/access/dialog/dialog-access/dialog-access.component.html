@@ -1,0 +1,22 @@
+<form [formGroup]="form" #espForm="ngForm">
+    <div class="inputGroup inputGroup1">
+        <input type="text" id="appName" name="appName" formControlName="appName" class="text" maxlength="256"
+            placeholder="Ingresar app" required />
+        <span class="indicator"></span>
+    </div>
+    <div class="inputGroup inputGroup1">
+        <input type="text" id="webSite" name="webSite" formControlName="webSite" class="text" maxlength="256"
+            placeholder="Ingresar url" required />
+        <span class="indicator"></span>
+    </div>
+    <div class="inputGroup inputGroup1">
+        <input type="text" id="description" name="description" formControlName="description" class="text" maxlength="256"
+            placeholder="Ingresar descripción" required />
+        <span class="indicator"></span>
+    </div>
+    <div class="inputGroup inputGroup3">
+        <button type="button" (click)="crearApp()">Crear aplicación
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+        </button>
+    </div>
+</form>

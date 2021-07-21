@@ -1,0 +1,30 @@
+<form [formGroup]="form" #espForm="ngForm">
+<!--
+    <div class="inputGroup inputGroup1" style="text-align: center">
+      <label>YSUMMA</label>    
+    </div>
+-->
+    <div class="inputGroup inputGroup1">
+      <input type="text" id="username" name="username" formControlName="username" class="email" maxlength="256" 
+      placeholder="Ingresar email" required/>
+      <span class="indicator"></span>
+    </div>
+    <div class="inputGroup inputGroup1">
+        <input type="text" id="nombres" name="nombres" formControlName="nombres" class="text" maxlength="256" 
+        placeholder="Ingresar nombres" required/>
+        <span class="indicator"></span>
+      </div>
+    <div class="inputGroup inputGroup2">
+      <input type="password" id="password" name="password" formControlName="password" class="password" 
+        required minlength="8" maxlength="16" placeholder="Ingresar contraseña"/>
+    </div>
+    <div class="inputGroup inputGroup2">
+        <input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat" class="password" 
+          required minlength="8" maxlength="16" placeholder="Repetir contraseña"/>
+      </div>
+    <div class="inputGroup inputGroup3">
+      <button type="button" (click)="crearUsuario()">Registrate
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+      </button>
+    </div>
+  </form>
