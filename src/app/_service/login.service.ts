@@ -2,13 +2,14 @@ import { Router } from '@angular/router';
 import { HOST, TOKEN_AUTH_USERNAME, TOKEN_AUTH_PASSWORD, TOKEN_NAME } from './../_shared/var.constants';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url: string = `${HOST}/oauth/token`;
+  url: string = `${environment.apiUrl}/oauth/token`;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,7 +27,7 @@ export class LoginService {
 
   cerrarSesion(){
     let access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
-    this.http.get(`${HOST}/usuarios/anular/${access_token}`).subscribe(() => {
+    this.http.get(`${environment.apiUrl}/usuarios/anular/${access_token}`).subscribe(() => {
       sessionStorage.clear();
       this.router.navigate(['home']);
     });

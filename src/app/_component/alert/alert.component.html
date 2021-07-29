@@ -1,0 +1,3 @@
+<div *ngIf="model" class="alert alert-primary mat-elevation-z8">
+    {{model.message}} <a *ngIf="model.linkExists" class="alert-link" (click)="actionEvent(model.action)" >{{ model.linkMessage }}</a>
+</div>

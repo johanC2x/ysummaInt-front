@@ -19,7 +19,6 @@ export class DialogAccessComponent implements OnInit {
     private service: AccessService,
     private dialogRef: MatDialogRef<DialogAccessComponent>,
     @Inject(MAT_DIALOG_DATA) private data: Access,
-    private router: Router
   ) {
     this.form = new FormGroup({
       'appName': new FormControl(''),
@@ -38,8 +37,8 @@ export class DialogAccessComponent implements OnInit {
     this.access.webSite = this.form.value['webSite'];
     this.access.description = this.form.value['description'];
     this.service.crearApp(this.access).subscribe(response => {
+      this.service.listarPorUsuario();
       this.dialogRef.close();
-      this.router.navigate(['create-app']);
     }, error => {
       console.log(error);
     });

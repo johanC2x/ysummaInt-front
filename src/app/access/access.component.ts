@@ -6,6 +6,10 @@ import {MatDialog} from '@angular/material/dialog';
 import { Access } from '../_model/access.model';
 import { AccessService } from '../_service/access.service';
 import { DialogAccessComponent } from './dialog/dialog-access/dialog-access.component';
+import { MatAccordion } from '@angular/material/expansion';
+import { Alert } from '../_model/alert.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { BEGINED_CREATE_APP, LINK_CREATE_APP, ACTION_OPEN_MODAL } from '../_shared/var.constants';
 
 @Component({
   selector: 'app-access',
@@ -16,14 +20,20 @@ export class AccessComponent implements OnInit  {
 
   data: Access[] = [];
   form: FormGroup;
-  displayedColumns: string[] = ['appName', 'token', 'description'];
+  displayedColumns: string[] = ['appName', 'token', 'description', 'action'];
   dataSource: MatTableDataSource<Access>;
+  panelOpenState = false;
+
+  alert: Alert = null;
+  message:string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   constructor(
     private service: AccessService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { 
     this.form = new FormGroup({
       'appName': new FormControl(''),
@@ -37,22 +47,21 @@ export class AccessComponent implements OnInit  {
   }
 
   ngAfterViewInit() {
-    //this.dataSource.paginator = this.paginator;
   }
-  
+
   listarPorUsuario(){
     this.service.listarPorUsuario().subscribe(response => {
-      response.map(x => {
-        let access = new Access();
-        access.idAccess = x.idAccess;
-        access.appName = x.appName;
-        access.description = x.description;
-        access.token = x.token;
-        access.webSite = x.webSite;
-        this.data.push(access);
-      });
-      this.dataSource = new MatTableDataSource(this.data);
-      this.dataSource.paginator = this.paginator;
+      if(response.length === 0){
+        this.alert = new Alert();
+        this.alert.exists = true;
+        this.alert.message = BEGINED_CREATE_APP;
+        this.alert.linkExists = true;
+        this.alert.linkMessage = LINK_CREATE_APP;
+        this.alert.action = ACTION_OPEN_MODAL;
+      } else {
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.paginator = this.paginator;
+      }
     });
   }
 
@@ -64,18 +73,25 @@ export class AccessComponent implements OnInit  {
     });
   }
 
-}
+  processAction(action: string){
+    if(action === ACTION_OPEN_MODAL){
+      this.dialog.open(DialogAccessComponent, {
+        width: '350px',
+        data: null
+      });
+    }
+  }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+  delete(idAccess: number){
+    let idDeleted = confirm('¿Seguro deseas eliminar el registro?');
+    if(idDeleted){
+      this.service.eliminar(idAccess).subscribe(response => {
+        this.service.listarPorUsuario();
+      }, (error) => {
+        console.log(error);
+        this.snackBar.open('Error interno', 'Cerrar');
+      });
+    }
+  }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'}
-];
+}

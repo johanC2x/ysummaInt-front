@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../_service/login.service';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,13 @@ import { LoginService } from '../_service/login.service';
 })
 export class HomeComponent implements OnInit {
 
+  message: string = '';
+
   constructor(
     public loginService : LoginService
-  ) { }
+  ) {
+    this.message = environment.apiUrl;
+  }
 
   ngOnInit(): void {
   }

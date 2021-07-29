@@ -14,3 +14,11 @@ export const ESTADO_F = 'Finalizado';
 export const PATH_REQ = '/cotizacion/requerimientos';
 export const PATH_ORD = '/cotizacion/ordenes';
 export const PATH_COT = '/cotizacion';
+
+//create-app
+export const BEGINED_CREATE_APP =  'Aún no creas tu aplicación? que esperas? empieza ya!!!';
+export const LINK_CREATE_APP =  'Haz click aquí.';
+
+//action-modal
+export const ACTION_OPEN_MODAL =  'open-modal';
+export const ACTION_REDIRECT =  'redirect';

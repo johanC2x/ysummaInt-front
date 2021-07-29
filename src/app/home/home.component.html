@@ -1,21 +1,50 @@
-<section fxLayout="column" fxFlexAlign="stretch" class="example-container">
-    <div fxFlexAlign="center"> 
-        <p>API DE CONSULTAS RUC</p> 
-    </div>
-  <!--
-    <p>Consulta datos públicos de empresas y personas de forma rápida mediante interfaz de programación (API REST).</p> 
-  -->
-  <!--
-    <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
-      <mat-tab label="Material Components"> 
-        <p>We are going to use different material components to create nice looking angular app.</p> 
-      </mat-tab>
-      <mat-tab label="Consume .NET Core Web API">
-          <p>We will consume our .NET Core application. Basically, we will create complete CRUD client app.</p>
-        </mat-tab>
-      <mat-tab label="Fully responsive navigation menu">
-          <p>By using material components, we are going to create fully responsive navigation menu, with its side-bar as well.</p>
-        </mat-tab>
-    </mat-tab-group>
-  -->
-</section>
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="example-headers-color">
+      <mat-panel-title>
+        API DE CONSULTAS RUC
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    Consulta datos públicos de empresas y personas de forma rápida mediante interfaz de programación (API REST).
+    <br/><br/>
+    Ideal para hacer búsquedas desde tus aplicaciones web y móviles, te ayudará a validar información de tus clientes de forma gratuita, 
+    integrable desde cualquier lenguaje de programación. → <a href="#">Ver ocumentación</a>
+  </mat-expansion-panel>
+</mat-accordion>
+<br/>
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="example-headers-color">
+      <mat-panel-title>
+        Documentación
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    Mediante la API REST de PeruApis.com puedes realizar consultas de datos desde tus aplicaciones de forma sencilla, simplemente enviando el parámetro document en tus solicitudes.
+    <br/><br/>
+    <b>
+    curl -X POST {{message}}/company/10463982711 \
+          -H 'Authorization: Bearer YOUR_ACCESS_KEY' \
+          -d "document=20295613620"
+    </b>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="example-headers-color">
+      <mat-panel-title>
+        Endpoint
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    Especifica la dirección URL principal de la API
+    <br/><br/>
+    <b>
+      {{message}}/company/10463982711
+    </b>
+  </mat-expansion-panel>
+</mat-accordion>

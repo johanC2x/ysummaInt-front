@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../_model/user.model';
 import { HOST } from '../_shared/var.constants';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url: string = `${HOST}/user`;
+  url: string = `${environment.apiUrl}/user`;
 
   constructor(
     private http: HttpClient, 

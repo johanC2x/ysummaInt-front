@@ -182,3 +182,30 @@ html {
   .button-app:hover, .button-app:active {
     background-color: #217093;
   }
+
+  .example-action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .example-headers-color {
+    background: #FAFAFA !important;
+  }
+
+  .cursor {
+    cursor: pointer;
+    text-decoration: underline;
+  }

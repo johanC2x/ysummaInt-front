@@ -20,6 +20,10 @@ import { DialogAccessComponent } from './access/dialog/dialog-access/dialog-acce
 import { MatDialogModule } from '@angular/material/dialog';
 import { JwtModule } from '@auth0/angular-jwt';
 import { TOKEN_NAME } from './_shared/var.constants';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { AlertComponent } from './_component/alert/alert.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -38,7 +42,8 @@ export function tokenGetter() {
     SignInComponent,
     SignUpComponent,
     AccessComponent,
-    DialogAccessComponent
+    DialogAccessComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,8 @@ export function tokenGetter() {
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule,
+    MatExpansionModule,
+    MatSnackBarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter : tokenGetter,
