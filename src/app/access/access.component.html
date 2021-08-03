@@ -43,4 +43,28 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+  <br/>
+  <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-tile
+        *ngFor="let tile of cards"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
+      
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="true" class="panel-margin">
+          <mat-expansion-panel-header class="example-headers-color">
+            <mat-panel-title>
+              {{tile.text}}
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          Máximo de transacciones <b>{{tile.maxTransaction}}</b>. {{tile.description}}
+        </mat-expansion-panel>
+      </mat-accordion>
+      
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <app-alert [model]="alert" (action)="processAction($event)"></app-alert>

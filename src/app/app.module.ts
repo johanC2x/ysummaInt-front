@@ -23,7 +23,8 @@ import { TOKEN_NAME } from './_shared/var.constants';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AlertComponent } from './_component/alert/alert.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { environment } from './../environments/environment';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -58,10 +59,11 @@ export function tokenGetter() {
     MatDialogModule,
     MatExpansionModule,
     MatSnackBarModule,
+    MatGridListModule,
     JwtModule.forRoot({
       config: {
         tokenGetter : tokenGetter,
-        whitelistedDomains: ['localhost:8082'],
+        whitelistedDomains: [environment.apiDomain],
       }
     })
   ],

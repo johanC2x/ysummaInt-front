@@ -209,3 +209,7 @@ html {
     cursor: pointer;
     text-decoration: underline;
   }
+
+  .panel-margin {
+    margin: 10px;
+  }
