@@ -26,11 +26,11 @@
     Mediante la API REST de PeruApis.com puedes realizar consultas de datos desde tus aplicaciones de forma sencilla, simplemente enviando el parámetro document en tus solicitudes.
     <br/><br/>
     <b>
-    curl -X POST {{message}}/company/10463982711 \
-          -H 'Accept: application/json' \
-          -H 'Content-Type: application/json' \
-          -H 'user-access: YOUR_USER' \
-          -H 'token-access: YOUR_TOKEN' \
+    curl -i -H {{message}}/company/10463982711 
+          -H 'Accept: application/json' 
+          -H 'Content-Type: application/json' 
+          -H 'user-access: YOUR_USER' 
+          -H 'token-access: YOUR_TOKEN' 
           -d "document=20295613620"
     </b>
   </mat-expansion-panel>
