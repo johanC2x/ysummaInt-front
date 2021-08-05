@@ -27,7 +27,10 @@
     <br/><br/>
     <b>
     curl -X POST {{message}}/company/10463982711 \
-          -H 'Authorization: Bearer YOUR_ACCESS_KEY' \
+          -H 'Accept: application/json' \
+          -H 'Content-Type: application/json' \
+          -H 'user-access: YOUR_USER' \
+          -H 'token-access: YOUR_TOKEN' \
           -d "document=20295613620"
     </b>
   </mat-expansion-panel>
