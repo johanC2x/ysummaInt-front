@@ -19,14 +19,6 @@ import { Transaction } from '../_model/transaction.model';
   styleUrls: ['./access.component.css']
 })
 export class AccessComponent implements OnInit  {
-  /*
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
-  */
   tiles: Tile[] = [
     {text: 'One', cols: 1, rows: 1, color: 'lightblue'},
     {text: 'Two', cols: 1, rows: 1, color: 'lightblue'},
@@ -126,12 +118,23 @@ export class AccessComponent implements OnInit  {
         obj.text = x.accountType;
         obj.description = x.description;
         obj.maxTransaction = x.maxTransaction;
+        obj.active = x.active;
         this.cards.push(obj);
       });
       
     });
   }
 
+  changePlan(accountType: string){
+    this.cards.map(x => x.color = 'ButtonFace');
+    this.cards.forEach(element => {
+      if(element.text === accountType && element.active === true){
+        this.snackBar.open('Actualmente tiene esta cuenta', 'Cerrar');
+      }else if(element.text === accountType){
+        element.color = 'lightblue';
+      }
+    });
+  }
 
 }
 
@@ -149,4 +152,5 @@ export class Card{
   text: string;
   description: string;
   maxTransaction: number;
+  active: boolean;
 }

@@ -213,3 +213,15 @@ html {
   .panel-margin {
     margin: 10px;
   }
+/*
+  .panel-margin:hover {
+    cursor: pointer;
+  }
+*/
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
