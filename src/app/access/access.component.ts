@@ -129,6 +129,7 @@ export class AccessComponent implements OnInit  {
     this.cards.map(x => x.color = 'ButtonFace');
     this.cards.forEach(element => {
       if(element.text === accountType && element.active === true){
+        element.color = 'lightblue';
         this.snackBar.open('Actualmente tiene esta cuenta', 'Cerrar');
       }else if(element.text === accountType){
         element.color = 'lightblue';

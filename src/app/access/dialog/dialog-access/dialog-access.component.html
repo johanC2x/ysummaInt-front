@@ -1,4 +1,4 @@
-<form [formGroup]="form" #espForm="ngForm">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="inputGroup inputGroup1">
         <input type="text" id="appName" name="appName" formControlName="appName" class="text" maxlength="256"
             placeholder="Ingresar app" required />
@@ -15,8 +15,11 @@
         <span class="indicator"></span>
     </div>
     <div class="inputGroup inputGroup3">
+    <!--
         <button type="button" (click)="crearApp()">Crear aplicación
             <i class="fa fa-sign-in" aria-hidden="true"></i>
         </button>
+    -->
+        <button type="submit" [disabled]="!registerForm.valid">Submit</button>
     </div>
 </form>
