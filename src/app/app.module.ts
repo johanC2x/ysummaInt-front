@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -25,6 +25,8 @@ import { AlertComponent } from './_component/alert/alert.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { environment } from './../environments/environment';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -60,6 +62,8 @@ export function tokenGetter() {
     MatExpansionModule,
     MatSnackBarModule,
     MatGridListModule,
+    NgxPayPalModule,
+    NgxSpinnerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter : tokenGetter,
@@ -68,6 +72,7 @@ export function tokenGetter() {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
