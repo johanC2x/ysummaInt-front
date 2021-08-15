@@ -1,29 +1,44 @@
-<form [formGroup]="form" #espForm="ngForm">
-<!--
-    <div class="inputGroup inputGroup1" style="text-align: center">
-      <label>YSUMMA</label>    
-    </div>
--->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
     <div class="inputGroup inputGroup1">
-      <input type="text" id="username" name="username" formControlName="username" class="email" maxlength="256" 
-      placeholder="Ingresar email" required/>
+      <input [class.is-invalid] = "form.get('username').invalid && form.get('username').touched"
+	        type="email" class="form-control" formControlName="username" placeholder="Ingresar email"/>
       <span class="indicator"></span>
+      <div *ngIf="getControl.username.invalid && (getControl.username.dirty || getControl.username.touched)" class="alert alert-danger">
+        <div *ngIf="getControl.username.errors.required">El campo email es requerido.</div>
+        <div *ngIf="getControl.username.errors?.pattern">Ingresar un email válido.</div>
+      </div>
     </div>
     <div class="inputGroup inputGroup1">
         <input type="text" id="nombres" name="nombres" formControlName="nombres" class="text" maxlength="256" 
         placeholder="Ingresar nombres" required/>
         <span class="indicator"></span>
+        <div *ngIf="getControl.nombres.invalid && (getControl.nombres.dirty || getControl.nombres.touched)" class="alert alert-danger">
+          <div *ngIf="getControl.nombres.errors?.required">El campo nombres es requerido.</div>
+        </div>
       </div>
     <div class="inputGroup inputGroup2">
       <input type="password" id="password" name="password" formControlName="password" class="password" 
         required minlength="8" maxlength="16" placeholder="Ingresar contraseña"/>
+        <div *ngIf="getControl.password.invalid && (getControl.password.dirty || getControl.password.touched)" class="alert alert-danger">
+          <div *ngIf="getControl.password.errors?.required">El campo contraseña es requerido.</div>
+          <div *ngIf="getControl.password.errors?.minlength">Ingresar como mínimo 6 carácteres.</div>
+        </div>
     </div>
     <div class="inputGroup inputGroup2">
         <input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat" class="password" 
           required minlength="8" maxlength="16" placeholder="Repetir contraseña"/>
+          <div *ngIf="getControl.password_repeat.invalid && (getControl.password_repeat.dirty || getControl.password_repeat.touched)" class="alert alert-danger">
+            <div *ngIf="getControl.password_repeat.errors?.required">El campo confirmar contraseña es requerido.</div>
+            <div *ngIf="getControl.password_repeat.errors?.minlength">La contraseña no coincide.</div>
+          </div>
       </div>
     <div class="inputGroup inputGroup3">
+    <!--
       <button type="button" (click)="crearUsuario()">Registrate
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+      </button>
+    -->
+      <button type="submit" >Registrate
         <i class="fa fa-sign-in" aria-hidden="true"></i>
       </button>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MustMatch } from '../_helper/must-match.validator';
 import { Rol } from '../_model/rol.model';
 import { User } from '../_model/user.model';
 import { UserService } from '../_service/user.service';
@@ -16,13 +17,26 @@ export class SignUpComponent implements OnInit {
   rol: Rol;
 
   constructor(
-    private service: UserService
+    private service: UserService,
+    private formBuilder: FormBuilder
   ) {
+    /*
     this.form = new FormGroup({
-      'username': new FormControl(''),
-      'nombres': new FormControl(''),
-      'password': new FormControl(''),
-      'password_repeat': new FormControl('')
+      'username': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      'nombres': new FormControl('', [Validators.required]),
+      'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
+      'password_repeat': new FormControl('', [Validators.required])
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
+    */
+    this.form = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      nombres: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      password_repeat: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'password_repeat')
     });
   }
 
@@ -43,7 +57,7 @@ export class SignUpComponent implements OnInit {
 
     this.service.crearUSuario(this.user).subscribe(data => {
       this.form = new FormGroup({
-        'username': new FormControl(''),
+        'username': new FormControl('', [Validators.required]),
         'nombres': new FormControl(''),
         'password': new FormControl(''),
         'password_repeat': new FormControl('')
@@ -51,6 +65,14 @@ export class SignUpComponent implements OnInit {
     }, error => {
 
     });
+  }
+
+  get getControl(){
+    return this.form.controls;
+  }
+
+  onSubmit(){
+
   }
 
 }
