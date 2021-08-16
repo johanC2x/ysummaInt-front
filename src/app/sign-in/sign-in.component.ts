@@ -4,8 +4,9 @@ import { LoginService } from '../_service/login.service.js';
 import { TOKEN_NAME } from './../_shared/var.constants';
 import './../login-animation.js';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,11 +24,19 @@ export class SignInComponent implements OnInit {
   constructor(
     private loginService : LoginService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
   ) { 
+    /*
     this.form = new FormGroup({
       'email': new FormControl(''),
       'password': new FormControl('')
+    });
+    */
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      password: ['', Validators.required]
     });
   }
 
@@ -37,6 +46,10 @@ export class SignInComponent implements OnInit {
 
   ngAfterViewInit() {
     (window as any).initialize();
+  }
+
+  get getControl(){
+    return this.form.controls;
   }
 
   iniciarSesion(): void {
@@ -60,6 +73,10 @@ export class SignInComponent implements OnInit {
       });
       this.spinner.hide();
     }, 5000);
+  }
+
+  onSubmit(){
+    this.iniciarSesion();
   }
 
 }

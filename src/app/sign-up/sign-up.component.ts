@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MustMatch } from '../_helper/must-match.validator';
 import { Rol } from '../_model/rol.model';
 import { User } from '../_model/user.model';
@@ -18,7 +19,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private service: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {
     /*
     this.form = new FormGroup({
@@ -62,8 +64,10 @@ export class SignUpComponent implements OnInit {
         'password': new FormControl(''),
         'password_repeat': new FormControl('')
       });
+      this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
     }, error => {
-
+      console.log(error);
+      this.snackBar.open('Error interno', 'Cerrar');
     });
   }
 
@@ -72,7 +76,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
-
+    this.crearUsuario();
   }
 
 }
