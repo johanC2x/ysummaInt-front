@@ -27,13 +27,7 @@ export class SignInComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-  ) { 
-    /*
-    this.form = new FormGroup({
-      'email': new FormControl(''),
-      'password': new FormControl('')
-    });
-    */
+  ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: ['', Validators.required]

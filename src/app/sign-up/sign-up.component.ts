@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MustMatch } from '../_helper/must-match.validator';
 import { Rol } from '../_model/rol.model';
 import { User } from '../_model/user.model';
@@ -20,18 +21,9 @@ export class SignUpComponent implements OnInit {
   constructor(
     private service: UserService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private spinner: NgxSpinnerService
   ) {
-    /*
-    this.form = new FormGroup({
-      'username': new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      'nombres': new FormControl('', [Validators.required]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
-      'password_repeat': new FormControl('', [Validators.required])
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    });
-    */
     this.form = this.formBuilder.group({
       username: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       nombres: ['', Validators.required],
@@ -46,29 +38,33 @@ export class SignUpComponent implements OnInit {
   }
 
   crearUsuario(){
-    this.rol = new Rol();
-    this.rol.idRol = 1;
+    this.spinner.show();
+    setTimeout(() => {
+      this.rol = new Rol();
+      this.rol.idRol = 1;
 
-    this.user = new User();
-    this.user.username = this.form.value['username'];
-    this.user.nombres = this.form.value['nombres'];
-    this.user.password = this.form.value['password'];
-    this.user.enabled = true;
-    this.user.edad = 0;
-    this.user.rol = this.rol;
+      this.user = new User();
+      this.user.username = this.form.value['username'];
+      this.user.nombres = this.form.value['nombres'];
+      this.user.password = this.form.value['password'];
+      this.user.enabled = true;
+      this.user.edad = 0;
+      this.user.rol = this.rol;
 
-    this.service.crearUSuario(this.user).subscribe(data => {
-      this.form = new FormGroup({
-        'username': new FormControl('', [Validators.required]),
-        'nombres': new FormControl(''),
-        'password': new FormControl(''),
-        'password_repeat': new FormControl('')
+      this.service.crearUSuario(this.user).subscribe(data => {
+        this.form = new FormGroup({
+          'username': new FormControl('', [Validators.required]),
+          'nombres': new FormControl(''),
+          'password': new FormControl(''),
+          'password_repeat': new FormControl('')
+        });
+        this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
+      }, error => {
+        console.log(error);
+        this.snackBar.open('Error interno', 'Cerrar');
       });
-      this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
-    }, error => {
-      console.log(error);
-      this.snackBar.open('Error interno', 'Cerrar');
-    });
+      this.spinner.hide();
+    }, 5000);
   }
 
   get getControl(){
