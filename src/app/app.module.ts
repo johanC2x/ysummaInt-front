@@ -27,6 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { environment } from './../environments/environment';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { CheckoutComponent } from './access/checkout/checkout.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -46,7 +47,8 @@ export function tokenGetter() {
     SignUpComponent,
     AccessComponent,
     DialogAccessComponent,
-    AlertComponent
+    AlertComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

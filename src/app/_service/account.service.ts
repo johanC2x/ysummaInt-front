@@ -18,4 +18,8 @@ export class AccountService {
     return this.http.get<Transaction>(`${this.url}/byUser`);
   }
 
+  generateNewAccount(accountType: string){
+    return this.http.get<string>(`${this.url}/byUser/${accountType}`);
+  }
+
 }

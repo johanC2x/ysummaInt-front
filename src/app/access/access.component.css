@@ -225,3 +225,7 @@ html {
   tr.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
   }
+
+  .content-paypal {
+    margin: 0 auto;
+  }

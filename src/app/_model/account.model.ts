@@ -3,4 +3,6 @@ export class Account {
     maxTransaction: number;
     active: boolean;
     description: string;
+    currency: string;
+    amount: number;
 }
