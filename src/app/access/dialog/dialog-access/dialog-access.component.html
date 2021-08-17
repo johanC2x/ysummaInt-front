@@ -1,18 +1,27 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
     <div class="inputGroup inputGroup1">
         <input type="text" id="appName" name="appName" formControlName="appName" class="text" maxlength="256"
             placeholder="Ingresar app" required />
         <span class="indicator"></span>
+        <div *ngIf="getControl.appName.invalid && (getControl.appName.dirty || getControl.appName.touched)" class="alert alert-danger">
+            <div *ngIf="getControl.appName.errors.required">El campo email es requerido.</div>
+        </div>
     </div>
     <div class="inputGroup inputGroup1">
         <input type="text" id="webSite" name="webSite" formControlName="webSite" class="text" maxlength="256"
             placeholder="Ingresar url" required />
         <span class="indicator"></span>
+        <div *ngIf="getControl.webSite.invalid && (getControl.webSite.dirty || getControl.webSite.touched)" class="alert alert-danger">
+            <div *ngIf="getControl.webSite.errors.required">El campo email es requerido.</div>
+        </div>
     </div>
     <div class="inputGroup inputGroup1">
         <input type="text" id="description" name="description" formControlName="description" class="text" maxlength="256"
             placeholder="Ingresar descripción" required />
         <span class="indicator"></span>
+        <div *ngIf="getControl.description.invalid && (getControl.description.dirty || getControl.description.touched)" class="alert alert-danger">
+            <div *ngIf="getControl.description.errors.required">El campo email es requerido.</div>
+        </div>
     </div>
     <div class="inputGroup inputGroup3">
     <!--
@@ -20,6 +29,8 @@
             <i class="fa fa-sign-in" aria-hidden="true"></i>
         </button>
     -->
-        <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+        <button type="submit">Crear aplicación
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+        </button>
     </div>
 </form>

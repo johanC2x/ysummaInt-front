@@ -68,4 +68,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <app-alert [model]="alert" (action)="processAction($event)"></app-alert>
+  <app-alert [model]="alert" (action)="processAction($event)" (propagar)="procesaPropagar($event)"></app-alert>

@@ -160,6 +160,10 @@ export class AccessComponent implements OnInit {
     });
   }
 
+  procesaPropagar(mensaje){
+    console.log(mensaje);
+  }
+
 }
 
 export interface Tile {
