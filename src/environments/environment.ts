@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
   apiDomain: 'localhost:8080',
-  paypalClientID: 'Aca-Gni0lbiuEiX-WRvXbHtXb4S2vejbdgE-nN31kQZMQZ1qN5PxX6PflAdhf03VFdN7NQ5wm9dNtRtX'
+  //paypalClientID: 'Aca-Gni0lbiuEiX-WRvXbHtXb4S2vejbdgE-nN31kQZMQZ1qN5PxX6PflAdhf03VFdN7NQ5wm9dNtRtX'
+  paypalClientID: 'Ac62wipXwS6MYTGT9yOWS0KoOfAU_xWL22ohE9ML_Z2q_ndgaZDSAyMkePukeNBYTjxFB1bdMOzcj6f7'
 };
 
 /*
