@@ -64,6 +64,8 @@ export class SignInComponent implements OnInit {
           
           this.router.navigate(['home']);
         }
+      }, (error) => {
+        this.snackBar.open('Tu usuario o contraseña son incorrectos', 'Cerrar');
       });
       this.spinner.hide();
     }, 5000);
