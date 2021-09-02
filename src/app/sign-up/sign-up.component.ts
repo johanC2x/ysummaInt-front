@@ -60,8 +60,11 @@ export class SignUpComponent implements OnInit {
         });
         this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
       }, error => {
-        console.log(error);
-        this.snackBar.open('Error interno', 'Cerrar');
+        if(error.error.mensaje.indexOf("ConstraintViolationException") !== -1){
+          this.snackBar.open('El usuario ingresado existe', 'Cerrar');
+        }else{
+          this.snackBar.open('Error interno', 'Cerrar');
+        }
       });
       this.spinner.hide();
     }, 5000);

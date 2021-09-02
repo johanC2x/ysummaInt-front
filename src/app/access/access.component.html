@@ -14,8 +14,8 @@
   </mat-expansion-panel>
 </mat-accordion>
 <br/>
-
-<div *ngIf="!alert" class="mat-elevation-z8">
+<!--*ngIf="!alert"-->
+<div class="mat-elevation-z8">
     <button type="button" (click)="openDialog()" class="button-app">Crear App
         <i class="fa fa-sign-in" aria-hidden="true"></i>
     </button>
@@ -68,4 +68,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <app-alert [model]="alert" (action)="processAction($event)" (propagar)="procesaPropagar($event)"></app-alert>
+  <!--<app-alert [model]="alert" (action)="processAction($event)" (propagar)="procesaPropagar($event)"></app-alert>-->
