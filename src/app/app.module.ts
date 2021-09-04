@@ -28,6 +28,8 @@ import { environment } from './../environments/environment';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CheckoutComponent } from './access/checkout/checkout.component';
+import { RecoverComponent } from './recover/recover.component';
+import { SendComponent } from './send/send.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -48,7 +50,9 @@ export function tokenGetter() {
     AccessComponent,
     DialogAccessComponent,
     AlertComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    RecoverComponent,
+    SendComponent
   ],
   imports: [
     BrowserModule,

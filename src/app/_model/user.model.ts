@@ -7,4 +7,5 @@ export class User {
     enabled: boolean;
     edad: number;
     rol: Rol;
+    token: string;
 }

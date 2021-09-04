@@ -23,4 +23,11 @@ export class UserService {
     return this.http.post(this.url, user);
   }
 
+  sendEmail(email: string){
+    return this.http.get(`${this.url}/send/${email}`);
+  }
+
+  reset(user: User){
+    return this.http.post(`${this.url}/reset`, user);
+  }
 }

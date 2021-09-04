@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="inputGroup inputGroup1">
+      <label for="username">Email</label>
+      <input [class.is-invalid] = "getControl.username.invalid && getControl.username.touched"
+            type="email" class="form-control" formControlName="username"/>
+      <span class="indicator"></span>
+      <div *ngIf="getControl.username.invalid && (getControl.username.dirty || getControl.username.touched)" class="alert alert-danger">
+          <div *ngIf="getControl.username.errors.required">El campo email es requerido.</div>
+          <div *ngIf="getControl.username.errors?.pattern">Ingresar un email válido.</div>
+      </div>
+  </div>
+  <div class="inputGroup inputGroup3">
+    <button type="submit">Enviar Correo
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="inputGroup inputGroup2">
+      <input type="password" id="password" name="password" formControlName="password" class="password" 
+        required minlength="8" maxlength="16" placeholder="Ingresar contraseña"/>
+        <div *ngIf="getControl.password.invalid && (getControl.password.dirty || getControl.password.touched)" class="alert alert-danger">
+          <div *ngIf="getControl.password.errors?.required">El campo contraseña es requerido.</div>
+          <div *ngIf="getControl.password.errors?.minlength">Ingresar como mínimo 6 carácteres.</div>
+        </div>
+    </div>
+    <div class="inputGroup inputGroup2">
+        <input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat" class="password" 
+            required minlength="8" maxlength="16" placeholder="Repetir contraseña"/>
+        <div *ngIf="getControl.password_repeat.invalid && (getControl.password_repeat.dirty || getControl.password_repeat.touched)" class="alert alert-danger">
+            <div *ngIf="getControl.password_repeat.errors?.required">
+                El campo repetir contraseña es requerido.
+            </div>
+            <div *ngIf="getControl.password_repeat.errors?.minlength">
+                La contraseña no coincide.
+            </div>
+        </div>
+    </div>
+    <div class="inputGroup inputGroup3">
+      <button type="submit">Cambiar contraseña
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+      </button>
+    </div>
+</form>
