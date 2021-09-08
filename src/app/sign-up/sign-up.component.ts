@@ -39,35 +39,34 @@ export class SignUpComponent implements OnInit {
 
   crearUsuario(){
     this.spinner.show();
-    setTimeout(() => {
-      this.rol = new Rol();
-      this.rol.idRol = 1;
+    this.rol = new Rol();
+    this.rol.idRol = 1;
 
-      this.user = new User();
-      this.user.username = this.form.value['username'];
-      this.user.nombres = this.form.value['nombres'];
-      this.user.password = this.form.value['password'];
-      this.user.enabled = true;
-      this.user.edad = 0;
-      this.user.rol = this.rol;
+    this.user = new User();
+    this.user.username = this.form.value['username'];
+    this.user.nombres = this.form.value['nombres'];
+    this.user.password = this.form.value['password'];
+    this.user.enabled = true;
+    this.user.edad = 0;
+    this.user.rol = this.rol;
 
-      this.service.crearUSuario(this.user).subscribe(data => {
-        this.form = new FormGroup({
-          'username': new FormControl('', [Validators.required]),
-          'nombres': new FormControl(''),
-          'password': new FormControl(''),
-          'password_repeat': new FormControl('')
-        });
-        this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
-      }, error => {
-        if(error.error.mensaje.indexOf("ConstraintViolationException") !== -1){
-          this.snackBar.open('El usuario ingresado existe', 'Cerrar');
-        }else{
-          this.snackBar.open('Error interno', 'Cerrar');
-        }
+    this.service.crearUSuario(this.user).subscribe(data => {
+      this.form = new FormGroup({
+        'username': new FormControl('', [Validators.required]),
+        'nombres': new FormControl(''),
+        'password': new FormControl(''),
+        'password_repeat': new FormControl('')
       });
       this.spinner.hide();
-    }, 5000);
+      this.snackBar.open('Tu usuario ha sido creado', 'Cerrar');
+    }, error => {
+      this.spinner.hide();
+      if(error.error.mensaje === "USUARIO INGRESADO ACTUALMENTE EXISTE"){
+        this.snackBar.open('El usuario actualmente existe', 'Cerrar');
+      }else{
+        this.snackBar.open('Error interno', 'Cerrar');
+      }
+    });
   }
 
   get getControl(){
