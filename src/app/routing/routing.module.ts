@@ -7,6 +7,7 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 import { AccessComponent } from '../access/access.component';
 import { RecoverComponent } from '../recover/recover.component';
 import { SendComponent } from '../send/send.component';
+import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -15,7 +16,10 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'create-app', component: AccessComponent},
   { path: 'recover/:token', component: RecoverComponent},
-  { path: 'send', component: SendComponent}
+  { path: 'send', component: SendComponent},
+  {path: '404', component: PagenotfoundComponent},
+  {path: '**', redirectTo: '/404'}
+  //{ path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
  
 @NgModule({

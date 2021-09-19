@@ -30,6 +30,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { CheckoutComponent } from './access/checkout/checkout.component';
 import { RecoverComponent } from './recover/recover.component';
 import { SendComponent } from './send/send.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -52,7 +53,8 @@ export function tokenGetter() {
     AlertComponent,
     CheckoutComponent,
     RecoverComponent,
-    SendComponent
+    SendComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
