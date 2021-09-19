@@ -31,6 +31,7 @@ import { CheckoutComponent } from './access/checkout/checkout.component';
 import { RecoverComponent } from './recover/recover.component';
 import { SendComponent } from './send/send.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export function tokenGetter() {
   let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
@@ -54,7 +55,8 @@ export function tokenGetter() {
     CheckoutComponent,
     RecoverComponent,
     SendComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AccessComponent } from '../access/access.component';
 import { RecoverComponent } from '../recover/recover.component';
 import { SendComponent } from '../send/send.component';
 import { PagenotfoundComponent } from '../pagenotfound/pagenotfound.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent},
   { path: 'sign-up', component: SignUpComponent},
   { path: 'create-app', component: AccessComponent},
+  { path: 'profile', component: ProfileComponent},
   { path: 'recover/:token', component: RecoverComponent},
   { path: 'send', component: SendComponent},
   {path: '404', component: PagenotfoundComponent},
