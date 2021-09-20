@@ -41,7 +41,11 @@ export class SendComponent implements OnInit {
     }, error => {
       console.log(error);
       this.spinner.hide();
-      this.snackBar.open('Error interno', 'Cerrar');
+      if(error.error.mensaje === 'El correo ingresado no existe'){
+        this.snackBar.open(error.error.mensaje, 'Cerrar');
+      }else{
+        this.snackBar.open('Error interno', 'Cerrar');
+      }
     });
   }
 
