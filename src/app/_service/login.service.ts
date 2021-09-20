@@ -3,6 +3,8 @@ import { HOST, TOKEN_AUTH_USERNAME, TOKEN_AUTH_PASSWORD, TOKEN_NAME } from './..
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
+import jwt_decode from "jwt-decode";
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,11 @@ export class LoginService {
       sessionStorage.clear();
       this.router.navigate(['home']);
     });
+  }
+
+  decodeToken(): string{
+    let access_token = JSON.parse(sessionStorage.getItem(TOKEN_NAME)).access_token;
+    return jwt_decode(access_token);
   }
 
 }
