@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { Account } from 'src/app/_model/account.model';
 import { AccountService } from 'src/app/_service/account.service';
@@ -18,7 +19,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) private account: Account,
     private dialogRef: MatDialogRef<CheckoutComponent>,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private snackBar: MatSnackBar
   ) {
     this.checkout = account;
   }
@@ -74,6 +76,7 @@ export class CheckoutComponent implements OnInit {
         console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.accountService.generateNewAccount(this.checkout.accountType).subscribe(response => {
           console.log(response);
+          this.snackBar.open('El pago se ha realizado exitosamente', 'Cerrar');
         });
         this.dialogRef.close();
       },
